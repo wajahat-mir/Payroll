@@ -12,6 +12,7 @@ You can see the Db Structure DB Creation scripts under Payroll.API/Resources/DbC
 * Run the following commands
 
 chmod 777 ./Payroll.API
+
 ./Payroll.API
 
 * You can find the port # the server is running in the command prompt you just ran
