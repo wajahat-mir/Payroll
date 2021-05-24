@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>b5128677-ac02-4d61-92c1-aac9fcfb8a44</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Payroll.Bll.Core\Payroll.Bll.Core.csproj" />
+    <ProjectReference Include="..\Payroll.Bll\Payroll.Bll.csproj" />
+    <ProjectReference Include="..\Payroll.Dal\Payroll.Dal.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\LocalDb.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LocalDb.mdf">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Release\linux64\" />
+  </ItemGroup>
+
+
+</Project>
