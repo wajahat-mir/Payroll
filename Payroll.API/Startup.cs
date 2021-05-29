@@ -19,6 +19,7 @@ namespace Payroll.API
     public class Startup
     {
         public IConfiguration Configuration { get; }
+        private string _allowSpecificOrigins = "AllowSpecificOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -30,8 +31,21 @@ namespace Payroll.API
         {
             services.Configure<AppConfiguration>(Configuration);
             services.AddControllers();
+
+            var AllowedCors = Configuration.GetSection("AllowedCors").Get<string[]>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(_allowSpecificOrigins,
+                    builder => builder.WithOrigins(AllowedCors)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            });
+
             services.ConfigureSwagger();
             services.AddDependencyInjections();
+            services.AddLogger(Configuration);
+            services.AddHttpClients(Configuration);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
