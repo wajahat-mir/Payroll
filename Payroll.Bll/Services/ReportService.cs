@@ -124,10 +124,8 @@ namespace Payroll.Bll.Services
 
         public async Task InsertPayrollsAsync(IEnumerable<PayrollModel> payrolls, int reportId)
         {
-            foreach(var payroll in payrolls)
-            {
-                await _employeeRepository.AddEmployeeAsync(payroll.employeeId, payroll.jobGroup);
-            }
+            var employees = payrolls.Select(p => new EmployeeModel() { Id = p.employeeId, JobGroup = p.jobGroup });
+            await _employeeRepository.AddEmployeesAsync(employees);
             await _payrollRepository.InsertPayrollsAsync(payrolls, reportId);
         }
     }

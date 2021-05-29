@@ -21,23 +21,6 @@ namespace Payroll.Dal.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task AddEmployeeAsync(int employeeId, string jobGroup)
-        {
-            string query = @"SELECT * FROM Employee WHERE Id = @EmployeeId";
-            string insertQuery = @"INSERT INTO Employee(Id, JobGroup) VALUES (@Id, @JobGroup)";
-
-            using (IDbConnection db = _dbContext.CreateConnection())
-            {
-                db.Open();
-                var employee =  await db.QueryFirstOrDefaultAsync<EmployeeModel>(query, new { employeeId });
-
-                if(employee == null)
-                {
-                    await db.ExecuteAsync(insertQuery, new { Id = employeeId, jobGroup });
-                }
-            }
-        }
-
         public async Task AddEmployeesAsync(IEnumerable<EmployeeModel> employees)
         {
             var distinctEmployees = employees.Distinct();

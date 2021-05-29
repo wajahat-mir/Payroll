@@ -21,3 +21,8 @@ CREATE TABLE [dbo].[Pay] (
     CONSTRAINT [FK_Pay_Employee_Id] FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[Employee] ([Id]),
     CONSTRAINT [FK_Pay_Report_Id] FOREIGN KEY ([ReportId]) REFERENCES [dbo].[Report] ([Id])
 );
+
+CREATE TYPE EmployeeTableType AS TABLE( 
+    [Id] INT, 
+    [JobGroup] VARCHAR (5)
+);
