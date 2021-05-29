@@ -8,7 +8,6 @@ namespace Payroll.Bll.Core.Interfaces
 {
     public interface IEmployeeRepository
     {
-        Task AddEmployeeAsync(int employeeId, string jobGroup);
         Task AddEmployeesAsync(IEnumerable<EmployeeModel> employees);
     }
 }
