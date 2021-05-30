@@ -67,7 +67,7 @@ namespace Payroll.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseMiddleware<AuthorizationMiddleware>();
 
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
